@@ -26,7 +26,7 @@
                 },
                 body: formData,
             })
-            .then(response => response.json())
+            .then(response => response.json())  // This line converts the response to JSON
             .then(data => {
                 const outputText = document.getElementById("outputText");
                 outputText.value = JSON.stringify(data, null, 2);  // Pretty-printing JSON data in the text area
