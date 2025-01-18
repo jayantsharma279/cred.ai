@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Upload with Flask</title>
+</head>
+<body>
+    <h1>Upload PDF for Processing</h1>
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file">
+        <button type="submit">Upload</button>
+    </form>
+    <h2>Response:</h2>
+    <textarea id="outputText" rows="10" cols="50"></textarea>
+    <script src="/static/script.js"></script>
+</body>
+</html>
