@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Upload for Parsing</title>
-</head>
-<body>
-    <h1>Upload a PDF for Parsing</h1>
-    <form id="pdf-upload-form" enctype="multipart/form-data">
-        <input type="file" id="pdf-file" name="pdf" accept=".pdf" required />
-        <button type="submit">Upload PDF</button>
-    </form>
-    <div id="result"></div>
-
-    <script>
-        document.getElementById('pdf-upload-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const fileInput = document.getElementById('pdf-file');
-            const formData = new FormData();
-            formData.append('pdf', fileInput.files[0]);
-
-            fetch('https://api.cloud.llamaindex.ai/api/v1/parsing/upload', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer llx-4NtZLmrLPlJX6ZQZBN4T1Y9B8Bu2YlQPy8UjaxEJN7PzXYOo',
-                },
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('result').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('result').innerText = 'An error occurred.';
-            });
-        });
-    </script>
-</body>
-</html>
-
+<form id="pdf-upload-form">
+  <input type="file" id="pdf-file" name="pdf" accept=".pdf" required>
+  <button type="submit">Upload</button>
+</form>
