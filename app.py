@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import time
+import pandas as pd
 import os
 import requests
 
@@ -8,11 +9,13 @@ app.config['UPLOAD_FOLDER'] = './uploads'
 
 def only_tables(data_json):
     tables = []
-    for page in data_json['pages']:
-        for item in page['items']:
-            if item['type'] == 'table':
-                tables.append(item)
+    for page in data_json.get("pages", []):
+        for item in page.get("items", []):
+            if item.get("type") == "table" and "rows" in item:
+                tables.append(item["rows"])
+    #df = pd.DataFrame([row for page in data_json["pages"] for item in page["items"] if item.get("type") == "table" for row in item["rows"]])
     return tables
+
 # Home route to serve the HTML page
 @app.route('/')
 def index():
@@ -51,13 +54,12 @@ def upload_pdf():
         'Accept': 'application/json',
         'Authorization': 'Bearer llx-4NtZLmrLPlJX6ZQZBN4T1Y9B8Bu2YlQPy8UjaxEJN7PzXYOo'
     }
-    time.sleep(5)
+    time.sleep(3)
     response_final = requests.get(url, headers=headers)
     if response_final.status_code != 200:
         return jsonify({'error': 'Failed to retrieve parsing result', 'details': response_final.text}), 500
 
     return only_tables(response_final.json())
-    #return jsonify(response_final.json())  # Return the JSON result
 
     
 if __name__ == '__main__':
