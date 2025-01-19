@@ -9,9 +9,17 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             method: 'POST',
             body: formData
         });
-        const result = await response.json();
-        document.getElementById('outputText').value = JSON.stringify(result, null, 2);
+
+        // Ensure the response is handled correctly
+        if (!response.ok) {
+            const errorText = await response.text();
+            document.getElementById('outputText').value = `Error: ${errorText}`;
+        } else {
+            const resultText = await response.text(); // Get text from the response
+            document.getElementById('outputText').value = resultText;
+        }
     } catch (error) {
         console.error('Error:', error);
+        document.getElementById('outputText').value = `Error: ${error.message}`;
     }
 });

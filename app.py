@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import time
 import pandas as pd
+import json
 import os
 import requests
 
@@ -15,6 +16,16 @@ def only_tables(data_json):
                 tables.append(item["rows"])
     #df = pd.DataFrame([row for page in data_json["pages"] for item in page["items"] if item.get("type") == "table" for row in item["rows"]])
     return tables
+
+def format_as_readable(json_data):
+    formatted_str = "Bank Statement Transactions: [\n"
+    for sublist in json_data:
+        formatted_str += "  [\n"
+        for item in sublist:
+            formatted_str += f"    {json.dumps(item)},\n"
+        formatted_str = formatted_str.rstrip(",\n") + "\n  ],\n"
+    formatted_str = formatted_str.rstrip(",\n") + "\n]"
+    return formatted_str
 
 # Home route to serve the HTML page
 @app.route('/')
@@ -54,14 +65,22 @@ def upload_pdf():
         'Accept': 'application/json',
         'Authorization': 'Bearer llx-4NtZLmrLPlJX6ZQZBN4T1Y9B8Bu2YlQPy8UjaxEJN7PzXYOo'
     }
-    time.sleep(3)
-    response_final = requests.get(url, headers=headers)
-    if response_final.status_code != 200:
-        return jsonify({'error': 'Failed to retrieve parsing result', 'details': response_final.text}), 500
-
-    return only_tables(response_final.json())
-
     
+    while True:
+        response_final = requests.get(url, headers=headers)   
+        if response_final.status_code == 200: #Job is done, give the output
+            result  = format_as_readable(only_tables(response_final.json()))
+            print(f"Formatted Result: {result}")  # Debugging log
+            return result
+        elif response_final.status_code == 422:
+            return jsonify({'error': 'Failed to retrieve parsing result', 'details': response_final.text}), 500
+        else:
+            time.sleep(3)
+            # return jsonify({'error': 'Failed to retrieve parsing result', 'details': response_final.text}), 500
+            continue
+    
+
+            
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.run(debug=True)
