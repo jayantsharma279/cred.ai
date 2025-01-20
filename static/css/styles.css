@@ -1,0 +1,43 @@
+.Header-container-3KfH5 {
+    display: flex;
+    height: 55px;
+    align-items: center;
+  }
+  .Header-slot-3P_6i {
+    display: flex;
+    flex: 1;
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+  .Header-slot-3P_6i.Header-left-1TvAH, .Header-slot-3P_6i.Header-right-2UWLN {
+    max-width: 30%;
+  }
+  .Header-slot-3P_6i.Header-left-1TvAH button, .Header-slot-3P_6i.Header-right-2UWLN button, .Header-slot-3P_6i.Header-left-1TvAH span, .Header-slot-3P_6i.Header-right-2UWLN span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .Header-slot-3P_6i.Header-left-1TvAH {
+    justify-content: flex-start;
+  }
+  .Header-slot-3P_6i.Header-center-2OBHS {
+    flex-grow: 4;
+    width: 0;
+    height: 55px;
+    align-items: center;
+    justify-content: center;
+  }
+  .Header-slot-3P_6i.Header-center-2OBHS .Header-titleContainer-1vXWd {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+  .Header-slot-3P_6i.Header-right-2UWLN {
+    justify-content: flex-end;
+  }
+  
+  
