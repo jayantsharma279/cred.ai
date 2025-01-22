@@ -3,18 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Upload with Flask</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
+    <title>Background Image with Text Box</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-    <h1>Upload PDF for Processing</h1>
-    <form id="uploadForm" method="post" enctype="multipart/form-data">
-        <input type="file" id="fileInput" name="file">
-        <button type="submit">Upload</button>
-    </form>
-    <h2>Response:</h2>
-    <textarea id="outputText" rows="10" cols="50"></textarea>
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="text-box">
+            <h2>Smarter Underwriting Decisions</h2>
+            <p>Revolutionizing smarter loan decisions with AI.</p>
+        </div>
+    </section>
+    <section class="mid">
+        <div class="text-box">
+            <h3 class="sub-heading">Intelligent Risk Assessment</h3>
+            <p class="description">
+                We help equip community banks and credit unions 
+                with the technology they need to compete, and 
+                provide fair and affordable capital to American businesses.
+            </p>
+        </div>
+    </section>
+    <section class="zero">
+    </section>
+
+    <section class="upload-section">
+        <div class="content">
+          <h3>Upload a bank statement for AI risk assessment</h3>
+          <p>Our state-of-the-art technology assesses the credibility of your clients from minimal documents.</p>
+          <div class="button-container">
+            <form id="uploadForm" method="post" enctype="multipart/form-data">
+              <!-- File Input (hidden) -->
+              <input type="file" id="fileInput" name="file" style="display: none;">
+          
+              <!-- Upload Button to trigger file input -->
+              <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click();">
+                Upload bank statement
+              </button>
+          
+              <!-- Submit Button -->
+              <button type="submit" class="submit-button">
+                Submit
+              </button>
+            </form>
+          </div>
+    </section>
+      <!-- Response Area-->
+       
+
+    <section class="ai-feature">
+        <div class="content">
+            <!-- Textarea for displaying the output -->
+             
+            <textarea id="outputText" rows="10" cols="50" readonly></textarea>
+            
+            <!-- Animated text container -->
+            
+        </div>
+    <div class="calculator-container">
+        <h4>Risk Calculator</h4>
+
+        <!-- Loan Amount Slider -->
+        <div class="slider-section">
+            <label for="loanAmount">Loan Amount:</label>
+            <input type="range" id="loanAmount" min="1000" max="100000" value="50000" step="1000">
+            <span id="loanAmountOutput">50000</span>
+        </div>
+
+        <!-- Time Slider -->
+        <div class="slider-section">
+            <label for="timeYears">Time (in Years):</label>
+            <input type="range" id="timeYears" min="1" max="30" value="5" step="1">
+            <span id="timeYearsOutput">5</span>
+        </div>
+
+        <!-- Interest Rate Slider -->
+        <div class="slider-section">
+            <label for="interestRate">Interest Rate (%):</label>
+            <input type="range" id="interestRate" min="1" max="40" value="5" step="0.1">
+            <span id="interestRateOutput">5</span>
+        </div>
+
+        <!-- Risk Output -->
+        <div class="risk-output">
+            <h3>Estimated EMI: <span id="riskOutput">12500</span></h3>
+        </div>
+    </div>
+    </section>
+    
+
+    <section class="footer">
+    <div class="footer-content">
+        <h2>Would love to do even more at Casca. Hope you like this :)</h2>
+        <div class="contact-info">
+        <p>jayantsh@andrew.cmu.edu</p>
+        <p>(724) 413-4205</p>
+        <div class="social-icons">
+            <a href="https://github.com/jayantsharma279" target="_blank" class="github-icon">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
+            </a>
+            <a href="https://www.linkedin.com/in/jayant-sharma-aie" target="_blank" class="linkedin-icon">
+                <img src="https://img.icons8.com/m_sharp/512/FFFFFF/linkedin.png" alt="LinkedIn" />
+            </a>
+        </div>
+        <div class="personal-details">
+            <p>Jayant Sharma</p>
+            <p>Graduate student in Artificial Intelligence and Biomedical Engineering</p>
+            <p>Carnegie Mellon University</p>
+            <p>Pittsburgh, PA</p>
+        </div>
+        
     <script src="/static/script.js"></script>
+               
 </body>
 </html>

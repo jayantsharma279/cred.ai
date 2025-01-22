@@ -17,13 +17,14 @@ SYSTEM_MESSAGE = """
 You are a loan evaluation assistant. Your role is to analyze a person's or business's bank statement to determine their loan eligibility. You must evaluate factors like incoming credits, debt-to-income ratio, and loan repayment ability based on the provided transactions, amounts, and descriptions.
 
 Your response must include:
-1. A clear decision: `<Accepted/Rejected>` for an amount not exceeding `<Credit Limit>`.
-2. A justification based on key financial indicators.
-3. Suggested improvements if the loan is rejected.
+1. A clear decision: `<Accepted/Rejected>`.
+2. Maximum sustainable EMI for loan repayment the person can manage '<Max EMI manageable>'
+3. A justification based on key financial indicators. Include any outstanding loan repayments if indicated in bank statement, 
+incoming and outgoing payment, sustainable balance, spend analysis etc.
 Output your response in the following structured JSON format:
 {
   "decision": "<Accepted/Rejected>",
-  "credit_limit": "<Max loan amount>",
+  "credit_limit": "<Max EMI manageable>",
   "justification": "<Detailed analysis>",
   "recommendations": "<Steps for improvement if rejected>"
 }
@@ -72,7 +73,7 @@ def upload_pdf():
 
     # Send the file to the LlamaParse API
     url = "https://api.cloud.llamaindex.ai/api/v1/parsing/upload"
-    headers = {'Authorization': 'Bearer llx-4NtZLmrLPlJX6ZQZBN4T1Y9B8Bu2YlQPy8UjaxEJN7PzXYOo'}
+    headers = {'Authorization': 'Bearer llx-VCkNNHqt4X7lzFz7Cdb6C3UhQoAKl7oaCHtQEqTJh39Eyy9l'}
     with open(file_path, 'rb') as f:
         response = requests.post(url, headers=headers, files={'file': f})
 
