@@ -6,8 +6,11 @@ import os
 import requests
 from openai import OpenAI
 
+from dotenv import load_dotenv
+api_key = os.getenv("API_KEY")
+
 #OpenAI API info
-client = OpenAI(api_key='sk-3nqsPXuRAwFc5tFHNlmMhA', base_url="https://cmu.litellm.ai")
+client = OpenAI(api_key=API_KEY, base_url="https://cmu.litellm.ai")
 USER_STR = "user"
 SYSTEM_STR = "system"
 MSG_STR = "content"
