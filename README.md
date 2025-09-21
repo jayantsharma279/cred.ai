@@ -1,5 +1,7 @@
 # CRED.ai: Automated Loan Underwriting from Bank Statements using NLP
 
+<img src='templates/webpage.png' alt='webpage' width="500">                                               <img src='templates/webpage_2.png' alt='webpage' width="500">
+
 This project automates the **loan underwriting process** by parsing applicant **bank statements** from PDF, transforming them into structured data, and running creditworthiness analysis using **NLP models**. 
 A finBERT model was finetuned on passbook data from HuggingFace, which runs text classification on each transaction to classify across spend categories (Income, Debt, Expenditure etc.) which is then used for underwriting.
 
@@ -11,6 +13,7 @@ A finBERT model was finetuned on passbook data from HuggingFace, which runs text
    
 -  Outputs underwriting decisions based on model predictions.
 
+<img src='templates/results.png' alt='webpage' width="500">                                 <img src='templates/results_1.png' alt='webpage' width="500">
 ---
 
 ## ⚙ Tech Stack
